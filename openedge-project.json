@@ -1,0 +1,36 @@
+{
+  "name": "ProjectGengar",
+  "version": "1.0",
+  "oeversion": "12.8",
+  "graphicalMode": true,
+  "charset": "utf-8",
+  "extraParameters": "-basekey ini",
+  "numThreads": 1,
+  "buildPath": [
+    {
+      "path": "src",
+      "type": "source",
+      "build": "rcode"
+    },
+    {
+      "type": "propath",
+      "path": "${DLC}"
+    },
+    {
+      "type": "propath",
+      "path": "${DLC}\/bin"
+    },
+    {
+      "type": "propath",
+      "path": "${DLC}\/gui"
+    }
+  ],
+  "dbConnections": [{
+    "name": "sp2k",
+    "connect": "-db db/sports2000 -ld sp2k",
+    "schemaFile": "dump/sports2000.df",
+    "aliases": [
+      "sports"
+    ]
+  }]
+}

@@ -1,0 +1,8 @@
+*.r
+protrace.*
+.builder/**
+.pct/**
+.vscode/**
+rcode/**
+db/**
+!db/startDb.bat
