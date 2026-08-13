@@ -1,0 +1,40 @@
+Sports2000 Database Schema Summary
+===================================
+Source: dump/sports2000.df (summary only - full .df file not included)
+
+Tables (25):
+  Benefits, BillTo, Bin, Customer, Department, Employee, Family, Feedback,
+  InventoryTrans, Invoice, Item, LocalDefault, Order, OrderLine, POLine,
+  PurchaseOrder, RefCall, Salesrep, ShipTo, State, Supplier,
+  SupplierItemXref, TimeSheet, Vacation, Warehouse
+
+Key tables used by this project
+--------------------------------
+
+Customer (Area "Info")
+  Fields: CustNum (int), Name, Address, Address2, City, State, Country,
+          PostalCode, Contact, Phone, SalesRep, CreditLimit (dec),
+          Balance (dec), Terms, Discount (int), Comments, Fax, EmailAddress
+  Primary index: CustNum (unique, on CustNum)
+
+Order (Area "Order")
+  Fields: Ordernum (int), CustNum (int, FK to Customer), OrderDate,
+          ShipDate, PromiseDate, Carrier, Instructions, PO, Terms, SalesRep,
+          BillToID (int), ShipToID (int), OrderStatus, WarehouseNum (int),
+          Creditcard
+  Indexes: OrderNum (unique, primary), CustOrder (unique: CustNum + Ordernum),
+           OrderDate, OrderStatus, SalesRep
+  Note: OrderLine records link to a customer indirectly via Order.CustNum.
+
+OrderLine (Area "Order")
+  Fields: Ordernum (int, FK to Order), Linenum (int), Itemnum (int, FK to
+          Item), Price (dec), Qty (int), Discount (int), ExtendedPrice (dec),
+          OrderLineStatus
+
+Item (Area "Inventory")
+  Fields: Itemnum (int), ItemName, CatPage (int), Price (dec),
+          CatDescription, Onhand (int), Allocated (int), ReOrder (int),
+          OnOrder (int), Category1, Category2, Special, Weight (dec),
+          Minqty (int)
+  Indexes: ItemNum (unique, primary), CatDescription (word),
+           Category2ItemName, CategoryItemName, ItemName (word)
